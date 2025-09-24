@@ -44,7 +44,7 @@ export const Home = () => {
 
   // Load initial batch of colors
   useEffect(() => {
-    fetch(30); // load 30 colors initially
+    fetch(50); // load 50 colors initially for better UX
   }, []);
 
   return (
@@ -80,8 +80,8 @@ export const Home = () => {
       >
         {theme === "light" ? (
           <svg
-            width="20"
-            height="20"
+            width="30"
+            height="30"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -92,8 +92,8 @@ export const Home = () => {
           </svg>
         ) : (
           <svg
-            width="20"
-            height="20"
+            width="30"
+            height="30"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -106,9 +106,12 @@ export const Home = () => {
 
       {/* InfiniteScroll Container */}
       <InfiniteScroll
-        dataLength={cards.length} // total items so far
-        next={() => fetch(10)} // generate 10 more on scroll
-        hasMore={true} // always load more
+        dataLength={cards.length}
+        next={() => fetch(10)}
+        hasMore={true}
+        height={"calc(100vh - 80px)"}
+        style={{ overflow: "visible" }}
+        scrollThreshold={0.9}
         loader={
           <h4
             className={`mt-4 ${theme === "dark" ? "text-white" : "text-black"}`}
