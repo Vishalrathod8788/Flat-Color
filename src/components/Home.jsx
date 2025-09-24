@@ -30,8 +30,21 @@ export const Home = () => {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
+  // Manual scroll detection as backup
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
+        fetch(20);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [cards.length]);
+
   // Function to generate multiple random colors
   const fetch = (count = 10) => {
+    console.log(`Loading ${count} more colors. Current total: ${cards.length}`);
     const newColors = Array.from(
       { length: count },
       () =>
@@ -107,11 +120,9 @@ export const Home = () => {
       {/* InfiniteScroll Container */}
       <InfiniteScroll
         dataLength={cards.length}
-        next={() => fetch(10)}
+        next={() => fetch(20)}
         hasMore={true}
-        height={"calc(100vh - 80px)"}
-        style={{ overflow: "visible" }}
-        scrollThreshold={0.9}
+        scrollThreshold={0.8}
         loader={
           <h4
             className={`mt-4 ${theme === "dark" ? "text-white" : "text-black"}`}
