@@ -31,16 +31,16 @@ export const Home = () => {
   }, [theme]);
 
   // Manual scroll detection as backup
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
-        fetch(20);
-      }
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
+  //       fetch(20);
+  //     }
+  //   };
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [cards.length]);
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, [cards.length]);
 
   // Function to generate multiple random colors
   const fetch = (count = 10) => {
