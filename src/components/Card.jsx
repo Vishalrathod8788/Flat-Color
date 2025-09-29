@@ -7,12 +7,12 @@ export const Card = ({ color, onCopy }) => {
   };
 
   return (
-    <Ripples className="">
+    <Ripples className="rounded-lg overflow-hidden m-4">
       <div
         role="button"
         tabIndex="0"
         onClick={handleCopy}
-        className="w-80 md:w-48 h-32 m-4 rounded-lg cursor-pointer shadow-lg transition-transform hover:scale-105"
+        className="w-80 md:w-48 h-32 cursor-pointer shadow-lg transition-transform hover:scale-105"
         style={{ backgroundColor: color }}
       ></div>
     </Ripples>
